@@ -41,7 +41,7 @@ def renovar(self):
         else:
             return False
 
-    def devolver(self):
+def devolver(self):
         if not self.disponivel:
             self.disponivel = True
             return True
@@ -49,15 +49,20 @@ def renovar(self):
             return False
 
 class Usuario:
+    def __init__(self, nome, telefone, nacionalidade,endereco,email):
+        self.nome = nome
+        self.telefone = telefone
+        self.nacionalidade = nacionalidade
+        self.endereco = endereco
+        self.email = email
+
+class Biblioteca:
     def __init__(self, nome, telefone, nacionalidade):
         self.nome = nome
         self.telefone = telefone
         self.nacionalidade = nacionalidade
-
-class Biblioteca:
-    def __init__(self, nome):
-        self.nome = nome
         self.usuarios = []
         self.livros = []
+        
         self.exemplares = []
         self.emprestimos = [] # penso que aqui precisa acrescentar dentro dessa classe o cadastro de livro, emprestimo a renovação e devolução... 

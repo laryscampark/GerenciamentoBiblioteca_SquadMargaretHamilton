@@ -1,11 +1,13 @@
 import sqlite3
 
-conexao = sqlite3.connect('banco')
+conexao = sqlite3.connect('biblioteca')
 cursor = conexao.cursor()
+
 #criacao da tbl
-#cursor.execute('CREATE TABLE usuarios(id INT, nome VARCHAR (100), endereco VARCHAR (100), email VARCHAR(100));')
-#cursor.execute('CREATE TABLE produtos(id INT, nome VARCHAR (100), endereco VARCHAR (100), email VARCHAR(100));')
-#cursor.execute('CREATE TABLE gerentes(id INT, nome VARCHAR (100), endereco VARCHAR (100), email VARCHAR(100));')
+#cursor.execute('CREATE TABLE usuario(id_usuario INT, nome VARCHAR (100),telefone INT, endereco VARCHAR (100),nacionalidade VARCHAR (100), email VARCHAR(100));')
+#cursor.execute('CREATE TABLE livro(id_livro INT, titulo VARCHAR (100), editora VARCHAR (100), autor VARCHAR(100), genero VARCHAR(100));')
+#cursor.execute('CREATE TABLE biblioteca(id_usuario INT, id_livro INT, nome VARCHAR (100),telefone INT, nacionalidade VARCHAR (100), PRIMARY KEY(id_usuario,id_livro), FOREIGN KEY (id_livro) REFERENCES livro(id_livro),FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario));')
+#cursor.execute('CREATE TABLE exemplares(id_usuario INT, id_livro INT, data_emprestimo DATE, data_devolucao DATE, limite_renovacao INT, estado_exemplar VARCHAR(100), PRIMARY KEY(id_usuario, id_livro), FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario), FOREIGN KEY(id_livro) REFERENCES livro(id_livro));')
 
 #alteracao na tbl 
 #cursor.execute('ALTER TABLE usuarios RENAME TO usuario')
@@ -52,10 +54,9 @@ cursor = conexao.cursor()
 #dados = cursor.execute('SELECT * FROM usuario INNER JOIN gerentes ON usuario.id = gerentes.id')
 
 #JSUBCONSULTAS 
-dados = cursor.execute('SELECT * FROM usuario WHERE nome IN (SELECT nome FROM gerentes)')
-for usuario in dados: 
-      print(usuario)
+
       
       
 conexao.commit()
 conexao.close
+
